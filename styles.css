@@ -176,6 +176,15 @@ section {
   margin: auto 0;
 }
 
+/* Makes the profile photo circular (scoped to #profile only,
+   so it doesn't affect the About section photo) */
+#profile .section__pic-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 .section__text {
   align-self: center;
   text-align: center;
@@ -267,20 +276,21 @@ section {
   position: relative;
 }
 
+/* Experience/Education cards now sit in a 2-column grid so a
+   4th card wraps cleanly onto a second row instead of leaving
+   an orphan card and stretched empty space */
 .about-containers {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   margin-bottom: 2rem;
   margin-top: 2rem;
 }
 
 .about-details-container {
+  display: flex;
   justify-content: center;
   flex-direction: column;
-}
-
-.about-containers,
-.about-details-container {
-  display: flex;
 }
 
 .about-pic {
@@ -306,12 +316,6 @@ section {
 .section-container {
   gap: 4rem;
   height: 80%;
-}
-
-.section__pic-container {
-  height: 400px;
-  width: 400px;
-  margin: auto 0;
 }
 
 /* EXPERIENCE SECTION */
