@@ -274,6 +274,8 @@ section {
 
 #about {
   position: relative;
+  height: auto;
+  min-height: fit-content;
 }
 
 /* Experience/Education cards now sit in a 2-column grid so a
@@ -289,7 +291,7 @@ section {
 
 .about-details-container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
 }
 
