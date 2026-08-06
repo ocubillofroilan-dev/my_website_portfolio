@@ -4,7 +4,7 @@
     margin-bottom: 6rem;
   }
   .about-containers {
-    flex-wrap: wrap;
+    grid-template-columns: repeat(2, 1fr);
   }
   #contact,
   #projects {
@@ -63,7 +63,9 @@
     height: fit-content;
     margin-bottom: 2rem;
   }
-  .about-containers,
+  .about-containers {
+    grid-template-columns: 1fr;
+  }
   .contact-info-upper-container,
   .btn-container {
     flex-wrap: wrap;
