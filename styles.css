@@ -160,6 +160,19 @@ section {
   display: flex;
 }
 
+/* Caps the main content blocks at a max width and centers them,
+   so on wide screens/monitors the cards and text stay a
+   consistent, readable size instead of looking small relative to
+   the extra whitespace on either side */
+.section-container,
+#profile,
+.experience-details-container,
+.about-details-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* PROFILE SECTION */
 
 #profile {
