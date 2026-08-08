@@ -1,14 +1,10 @@
 @media screen and (max-width: 1400px) {
   #profile {
-    height: 83vh;
+    min-height: 83vh;
     margin-bottom: 6rem;
   }
   .about-containers {
     grid-template-columns: repeat(2, 1fr);
-  }
-  #contact,
-  #projects {
-    height: fit-content;
   }
 }
 
@@ -30,10 +26,6 @@
   .arrow {
     display: none;
   }
-  section,
-  .section-container {
-    height: fit-content;
-  }
   section {
     margin: 0 5%;
   }
@@ -48,12 +40,8 @@
 }
 
 @media screen and (max-width: 600px) {
-  #contact,
-  footer {
-    height: 40vh;
-  }
   #profile {
-    height: 83vh;
+    min-height: 83vh;
     margin-bottom: 0;
   }
   article {
@@ -100,6 +88,6 @@
     font-size: 2rem;
   }
   .text-container {
-    text-align: justify;
+    text-align: center;
   }
 }

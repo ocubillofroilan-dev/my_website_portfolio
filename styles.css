@@ -59,7 +59,7 @@ a:hover {
 }
 
 .logo {
-  font-size: 2rem;
+  font-size: clamp(1.25rem, 4vw, 2rem);
 }
 
 .logo:hover {
@@ -70,6 +70,8 @@ a:hover {
 
 #hamburger-nav {
   display: none;
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
 
 .hamburger-menu {
@@ -148,10 +150,13 @@ a:hover {
 
 /* SECTIONS */
 
+/* Every section sizes itself to its own content (no fixed vh
+   height) and gets equal top/bottom padding instead. This keeps
+   the gap between Profile->About->Experience->Projects->Contact
+   consistent everywhere, instead of some sections being
+   artificially tall (big gaps) and others hugging tight (no gap) */
 section {
-  padding-top: 4vh;
-  height: 96vh;
-  margin: 0 10rem;
+  padding: 6vh clamp(1rem, 8vw, 10rem);
   box-sizing: border-box;
   min-height: fit-content;
 }
@@ -161,9 +166,8 @@ section {
 }
 
 /* Caps the main content blocks at a max width and centers them,
-   so on wide screens/monitors the cards and text stay a
-   consistent, readable size instead of looking small relative to
-   the extra whitespace on either side */
+   so on wide screens/zoomed-out views the cards and text stay a
+   consistent, readable size instead of stretching thin */
 .section-container,
 #profile,
 .experience-details-container,
@@ -175,11 +179,16 @@ section {
 
 /* PROFILE SECTION */
 
+/* min-height instead of a fixed height lets the section fill most
+   of the viewport on load, without over-expanding and leaving a
+   big empty gap when the effective viewport height grows (e.g.
+   zooming out) */
 #profile {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 5rem;
-  height: 80vh;
+  min-height: 80vh;
 }
 
 .section__pic-container {
@@ -211,13 +220,15 @@ section {
   text-align: center;
 }
 
+/* Fluid text sizing: scales smoothly with viewport width instead
+   of jumping only at breakpoints */
 .section__text__p2 {
-  font-size: 1.75rem;
+  font-size: clamp(1.1rem, 2.5vw, 1.75rem);
   margin-bottom: 1rem;
 }
 
 .title {
-  font-size: 3rem;
+  font-size: clamp(1.75rem, 5vw, 3rem);
   text-align: center;
   margin-top: 0.5rem;
 }
@@ -286,10 +297,12 @@ section {
 
 /* ABOUT SECTION */
 
+/* Extra bottom padding on top of the base section padding, so the
+   gap before "Experience" is clearly visible and not just relying
+   on the smaller default */
 #about {
   position: relative;
-  height: auto;
-  min-height: fit-content;
+  padding-bottom: 10vh;
 }
 
 /* Makes the About photo container stretch to match the height of
@@ -308,9 +321,10 @@ section {
   border-radius: 2rem;
 }
 
-/* Experience/Education cards sit in a 2-column grid so a 4th card
-   wraps cleanly onto a second row. Grid rows equalize height
-   automatically, so cards in the same row always match. */
+/* Fixed 2-column grid so the layout stays predictable at every
+   width in between your mediaquiries.css breakpoints. The 1200px
+   breakpoint (matching the hamburger-nav switch) and the 600px
+   breakpoint (down to 1 column) still control when this changes. */
 .about-containers {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -329,8 +343,13 @@ section {
   border-radius: 2rem;
 }
 
+/* Centers the paragraph and keeps it from stretching edge to edge
+   at the full section width, so it lines up with the cards above
+   it instead of sitting flush left/right */
 .text-container {
-  margin-top: 2rem;
+  max-width: 1200px;
+  margin: 2rem auto 0;
+  text-align: center;
 }
 
 .arrow {
@@ -351,7 +370,6 @@ section {
 
 .section-container {
   gap: 4rem;
-  height: 80%;
 }
 
 /* EXPERIENCE SECTION */
@@ -363,7 +381,7 @@ section {
 .experience-sub-title {
   color: rgb(85, 85, 85);
   font-weight: 600;
-  font-size: 2rem;
+  font-size: clamp(1.25rem, 3vw, 2rem);
   margin-bottom: 2rem;
 }
 
@@ -374,9 +392,8 @@ section {
   gap: 2rem;
 }
 
-/* Skill items now sit in an evenly-spaced grid instead of
-   flex-wrapping, so columns line up cleanly no matter how many
-   items are in a box, and items no longer cluster to one side */
+/* Skill items sit in an evenly-spaced grid that reflows its own
+   column count based on available width */
 .article-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
@@ -436,7 +453,6 @@ article p {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 70vh;
 }
 
 .contact-info-upper-container {
