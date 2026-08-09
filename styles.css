@@ -33,10 +33,15 @@ nav,
   display: flex;
 }
 
+/* min-height (not a fixed height) so the nav grows to fit the
+   logo text at extreme zoom levels instead of the text overflowing
+   past a too-short box and overlapping the section below it */
 nav {
   justify-content: space-around;
   align-items: center;
-  height: 17vh;
+  min-height: 17vh;
+  padding: 1rem 0;
+  box-sizing: border-box;
 }
 
 .nav-links {
@@ -150,11 +155,6 @@ a:hover {
 
 /* SECTIONS */
 
-/* Every section sizes itself to its own content (no fixed vh
-   height) and gets equal top/bottom padding instead. This keeps
-   the gap between Profile->About->Experience->Projects->Contact
-   consistent everywhere, instead of some sections being
-   artificially tall (big gaps) and others hugging tight (no gap) */
 section {
   padding: 6vh clamp(1rem, 8vw, 10rem);
   box-sizing: border-box;
@@ -165,9 +165,6 @@ section {
   display: flex;
 }
 
-/* Caps the main content blocks at a max width and centers them,
-   so on wide screens/zoomed-out views the cards and text stay a
-   consistent, readable size instead of stretching thin */
 .section-container,
 #profile,
 .experience-details-container,
@@ -179,10 +176,6 @@ section {
 
 /* PROFILE SECTION */
 
-/* min-height instead of a fixed height lets the section fill most
-   of the viewport on load, without over-expanding and leaving a
-   big empty gap when the effective viewport height grows (e.g.
-   zooming out) */
 #profile {
   display: flex;
   justify-content: center;
@@ -198,8 +191,6 @@ section {
   margin: auto 0;
 }
 
-/* Makes the profile photo circular (scoped to #profile only,
-   so it doesn't affect the About section photo) */
 #profile .section__pic-container img {
   width: 100%;
   height: 100%;
@@ -220,8 +211,6 @@ section {
   text-align: center;
 }
 
-/* Fluid text sizing: scales smoothly with viewport width instead
-   of jumping only at breakpoints */
 .section__text__p2 {
   font-size: clamp(1.1rem, 2.5vw, 1.75rem);
   margin-bottom: 1rem;
@@ -297,18 +286,11 @@ section {
 
 /* ABOUT SECTION */
 
-/* Extra bottom padding on top of the base section padding, so the
-   gap before "Experience" is clearly visible and not just relying
-   on the smaller default */
 #about {
   position: relative;
   padding-bottom: 10vh;
 }
 
-/* Makes the About photo container stretch to match the height of
-   the cards grid beside it (text-container must sit OUTSIDE
-   .about-details-container in the HTML for this to measure only
-   the cards, not the cards+paragraph combined) */
 #about .section__pic-container {
   height: auto;
   align-self: stretch;
@@ -321,10 +303,6 @@ section {
   border-radius: 2rem;
 }
 
-/* Fixed 2-column grid so the layout stays predictable at every
-   width in between your mediaquiries.css breakpoints. The 1200px
-   breakpoint (matching the hamburger-nav switch) and the 600px
-   breakpoint (down to 1 column) still control when this changes. */
 .about-containers {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -343,9 +321,6 @@ section {
   border-radius: 2rem;
 }
 
-/* Centers the paragraph and keeps it from stretching edge to edge
-   at the full section width, so it lines up with the cards above
-   it instead of sitting flush left/right */
 .text-container {
   max-width: 1200px;
   margin: 2rem auto 0;
@@ -392,8 +367,6 @@ section {
   gap: 2rem;
 }
 
-/* Skill items sit in an evenly-spaced grid that reflows its own
-   column count based on available width */
 .article-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
