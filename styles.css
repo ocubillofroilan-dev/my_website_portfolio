@@ -33,9 +33,6 @@ nav,
   display: flex;
 }
 
-/* min-height (not a fixed height) so the nav grows to fit the
-   logo text at extreme zoom levels instead of the text overflowing
-   past a too-short box and overlapping the section below it */
 nav {
   justify-content: space-around;
   align-items: center;
@@ -186,8 +183,9 @@ section {
 
 .section__pic-container {
   display: flex;
-  height: 400px;
-  width: 400px;
+  aspect-ratio: 1 / 1;
+  width: clamp(220px, 25vw, 400px);
+  height: auto;
   margin: auto 0;
 }
 
@@ -195,7 +193,7 @@ section {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top;
+  object-position: center 35%;
   border-radius: 50%;
 }
 
@@ -412,9 +410,6 @@ article p {
   background: rgb(250, 250, 250);
 }
 
-/* Gives every project image the same fixed-ratio box regardless of
-   its original size/shape, so all project cards line up evenly
-   instead of leaving mismatched whitespace around each image */
 #projects .article-container {
   display: flex;
   align-items: center;
