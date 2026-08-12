@@ -495,6 +495,68 @@ article p {
   border-color: rgb(163, 163, 163);
 }
 
+/* Same "bend a little" hover tilt as the certificate cards, plus
+   click-to-popup, applied to each project card */
+.project-card {
+  cursor: pointer;
+  transition: transform 300ms ease, box-shadow 300ms ease;
+  transform-style: preserve-3d;
+}
+
+.project-card:hover {
+  transform: perspective(600px) rotateX(4deg) rotateY(-4deg) translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* PROJECT MODAL (lightbox) */
+
+.project-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.project-modal-open {
+  display: flex;
+}
+
+.project-modal-img {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: 1rem;
+  object-fit: contain;
+}
+
+.project-modal-title {
+  color: white;
+  margin-top: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.project-modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 300;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.project-modal-close:hover {
+  color: rgb(200, 200, 200);
+}
+
 /* CERTIFICATES SECTION */
 
 #certificates {
@@ -514,7 +576,6 @@ article p {
   overflow: hidden;
   border: rgb(163, 163, 163) 0.1rem solid;
   cursor: pointer;
-  /* the "bend a little" hover effect: a slight 3D tilt + lift */
   transition: transform 300ms ease, box-shadow 300ms ease;
   transform-style: preserve-3d;
 }

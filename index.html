@@ -138,7 +138,6 @@
       <div class="marquee-item"><img src="./images/checked.png" alt="" class="icon" /><span>Python</span></div>
       <div class="marquee-item"><img src="./images/checked.png" alt="" class="icon" /><span>Java</span></div>
       <div class="marquee-item"><img src="./images/checked.png" alt="" class="icon" /><span>C++</span></div>
-      <!-- duplicate set, exact copy, for seamless loop -->
       <div class="marquee-item"><img src="./images/checked.png" alt="" class="icon" /><span>HTML</span></div>
       <div class="marquee-item"><img src="./images/checked.png" alt="" class="icon" /><span>CSS</span></div>
       <div class="marquee-item"><img src="./images/checked.png" alt="" class="icon" /><span>JavaScript</span></div>
@@ -189,7 +188,7 @@
       <h1 class="title">Projects</h1>
       <div class="experience-details-container">
         <div class="about-containers">
-          <div class="details-container color-container">
+          <div class="details-container color-container project-card" data-name="Arduino-Based PET Bottle Filament Maker for 3D Printing">
             <div class="article-container">
               <img
                 src="./images/thesis.png"
@@ -197,9 +196,9 @@
                 class="project-img"
               />
             </div>
-            <h2 class="experience-sub-title project-title">Arduino-Based PET Bottle Filament Maker for 3D Printing</h2>
+            <h2 class="experience-sub-title project-title">Arduino-Based PET Bottle Filament Maker</h2>
           </div>
-          <div class="details-container color-container">
+          <div class="details-container color-container project-card" data-name="Customer Relationship Management System">
             <div class="article-container">
               <img
                 src="./images/dcrm.png"
@@ -209,7 +208,7 @@
             </div>
             <h2 class="experience-sub-title project-title">Customer Relationship Management System</h2>
           </div>
-          <div class="details-container color-container">
+          <div class="details-container color-container project-card" data-name="AutoStature Device">
             <div class="article-container">
               <img
                 src="./images/autostature.png"
@@ -219,30 +218,31 @@
             </div>
             <h2 class="experience-sub-title project-title">AutoStature Device</h2>
           </div>
-          <div class="details-container color-container">
+          <div class="details-container color-container project-card" data-name="Job Finder Application">
             <div class="article-container">
               <img
                 src="./images/Jobfinder.png"
-                alt="Project 3"
+                alt="Project 4"
                 class="project-img"
               />
             </div>
             <h2 class="experience-sub-title project-title">Job Finder Application</h2>
-          </div><div class="details-container color-container">
+          </div>
+          <div class="details-container color-container project-card" data-name="Authentication Notes">
             <div class="article-container">
               <img
                 src="./images/notes.png"
-                alt="Project 3"
+                alt="Project 5"
                 class="project-img"
               />
             </div>
             <h2 class="experience-sub-title project-title">Authentication Notes</h2>
           </div>
-          <div class="details-container color-container">
+          <div class="details-container color-container project-card" data-name="Number Guessing Game">
             <div class="article-container">
               <img
                 src="./images/numberguess.png"
-                alt="Project 3"
+                alt="Project 6"
                 class="project-img"
               />
             </div>
@@ -251,6 +251,11 @@
         </div>
       </div>
     </section>
+    <div class="project-modal" id="project-modal">
+      <span class="project-modal-close" id="project-modal-close">&times;</span>
+      <img class="project-modal-img" id="project-modal-img" src="" alt="" />
+      <p class="project-modal-title" id="project-modal-title"></p>
+    </div>
     <section id="certificates">
       <p class="section__text__p1">My</p>
       <h1 class="title">Certificates</h1>

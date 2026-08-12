@@ -4,6 +4,8 @@ function toggleMenu() {
   menu.classList.toggle("open");
   icon.classList.toggle("open");
 }
+
+// Show More / Show Less toggle for certificates
 const showMoreBtn = document.getElementById("show-more-btn");
 if (showMoreBtn) {
   showMoreBtn.addEventListener("click", () => {
@@ -42,6 +44,35 @@ certModalClose.addEventListener("click", closeCertModal);
 certModal.addEventListener("click", (e) => {
   if (e.target === certModal) closeCertModal();
 });
+
+// Project modal (lightbox) - same pattern as the certificate modal
+const projectModal = document.getElementById("project-modal");
+const projectModalImg = document.getElementById("project-modal-img");
+const projectModalTitle = document.getElementById("project-modal-title");
+const projectModalClose = document.getElementById("project-modal-close");
+
+document.querySelectorAll(".project-card").forEach((card) => {
+  card.addEventListener("click", () => {
+    const img = card.querySelector("img");
+    projectModalImg.src = img.src;
+    projectModalTitle.textContent = card.dataset.name;
+    projectModal.classList.add("project-modal-open");
+  });
+});
+
+function closeProjectModal() {
+  projectModal.classList.remove("project-modal-open");
+}
+
+projectModalClose.addEventListener("click", closeProjectModal);
+projectModal.addEventListener("click", (e) => {
+  if (e.target === projectModal) closeProjectModal();
+});
+
+// Shared Escape-key handler closes whichever modal is open
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeCertModal();
+  if (e.key === "Escape") {
+    closeCertModal();
+    closeProjectModal();
+  }
 });
