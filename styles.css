@@ -349,12 +349,76 @@ section {
 
 /* EXPERIENCE SECTION */
 
+#experience {
+  position: relative;
+}
+
+.experience-sub-title {
+  color: rgb(85, 85, 85);
+  font-weight: 600;
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  margin-bottom: 2rem;
+}
+
+.experience-details-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.article-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 2rem;
+  text-align: initial;
+}
+
+article {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+article div {
+  min-width: 0;
+}
+
+article .icon {
+  cursor: default;
+  height: 2.75rem;
+}
+
+article h3,
+article p {
+  overflow-wrap: break-word;
+}
+
+article p {
+  font-size: 1rem;
+}
+
+/* TECH STACKS AND TOOLS MARQUEE */
+
 .marquee-container {
   overflow: hidden;
   width: 100%;
   margin: 2rem 0;
-  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
 }
 
 .marquee-track {
@@ -393,6 +457,7 @@ section {
     transform: translateX(-50%);
   }
 }
+
 /* PROJECTS SECTION */
 
 #projects {
@@ -428,6 +493,105 @@ section {
 .project-btn {
   color: black;
   border-color: rgb(163, 163, 163);
+}
+
+/* CERTIFICATES SECTION */
+
+#certificates {
+  position: relative;
+}
+
+.certificates-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.certificate-card {
+  aspect-ratio: 4 / 3;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  border: rgb(163, 163, 163) 0.1rem solid;
+  cursor: pointer;
+  /* the "bend a little" hover effect: a slight 3D tilt + lift */
+  transition: transform 300ms ease, box-shadow 300ms ease;
+  transform-style: preserve-3d;
+}
+
+.certificate-card:hover {
+  transform: perspective(600px) rotateX(4deg) rotateY(-4deg) translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.certificate-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.certificate-hidden {
+  display: none;
+}
+
+.show-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+#show-more-btn {
+  cursor: pointer;
+}
+
+/* CERTIFICATE MODAL (lightbox) */
+
+.cert-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.cert-modal-open {
+  display: flex;
+}
+
+.cert-modal-img {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: 1rem;
+  object-fit: contain;
+}
+
+.cert-modal-title {
+  color: white;
+  margin-top: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.cert-modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 300;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.cert-modal-close:hover {
+  color: rgb(200, 200, 200);
 }
 
 /* CONTACT */
