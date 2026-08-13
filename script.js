@@ -21,6 +21,22 @@ if (showMoreBtn) {
   });
 }
 
+// Show More / Show Less toggle for projects (same pattern as certificates)
+const showMoreProjectsBtn = document.getElementById("show-more-projects-btn");
+if (showMoreProjectsBtn) {
+  showMoreProjectsBtn.addEventListener("click", () => {
+    const hiddenProjectCards = document.querySelectorAll(".project-hidden");
+    const isExpanded = showMoreProjectsBtn.dataset.expanded === "true";
+
+    hiddenProjectCards.forEach((card) => {
+      card.style.display = isExpanded ? "none" : "flex";
+    });
+
+    showMoreProjectsBtn.textContent = isExpanded ? "Show More" : "Show Less";
+    showMoreProjectsBtn.dataset.expanded = isExpanded ? "false" : "true";
+  });
+}
+
 // Certificate modal (lightbox)
 const certModal = document.getElementById("cert-modal");
 const certModalImg = document.getElementById("cert-modal-img");
