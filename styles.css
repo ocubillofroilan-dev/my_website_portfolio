@@ -464,16 +464,6 @@ article p {
   position: relative;
 }
 
-/* 3-column grid, same layout as the Certificates section, instead
-   of the 2-column .about-containers default used by About/Experience */
-#projects .about-containers {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.project-hidden {
-  display: none;
-}
-
 .color-container {
   border-color: rgb(163, 163, 163);
   background: rgb(250, 250, 250);
