@@ -13,7 +13,7 @@ if (showMoreBtn) {
     const isExpanded = showMoreBtn.dataset.expanded === "true";
 
     hiddenCards.forEach((card) => {
-      card.style.display = isExpanded ? "none" : "flex";
+      card.style.display = isExpanded ? "none" : "block";
     });
 
     showMoreBtn.textContent = isExpanded ? "Show More" : "Show Less";
@@ -29,7 +29,7 @@ if (showMoreProjectsBtn) {
     const isExpanded = showMoreProjectsBtn.dataset.expanded === "true";
 
     hiddenProjectCards.forEach((card) => {
-      card.style.display = isExpanded ? "none" : "flex";
+      card.style.display = isExpanded ? "none" : "block";
     });
 
     showMoreProjectsBtn.textContent = isExpanded ? "Show More" : "Show Less";
