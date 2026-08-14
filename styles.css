@@ -9,6 +9,8 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  max-width: 1800px;
+  margin: 0 auto;
 }
 
 html {
