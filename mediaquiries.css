@@ -6,10 +6,8 @@
   .about-containers {
     grid-template-columns: repeat(2, 1fr);
   }
-  #projects .about-containers {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .certificates-grid {
+  #projects .about-containers,
+  #certificates .about-containers {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -60,10 +58,8 @@
   .about-containers {
     grid-template-columns: 1fr;
   }
-  #projects .about-containers {
-    grid-template-columns: 1fr;
-  }
-  .certificates-grid {
+  #projects .about-containers,
+  #certificates .about-containers {
     grid-template-columns: 1fr;
   }
   .contact-info-upper-container,
