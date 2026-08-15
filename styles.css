@@ -199,6 +199,37 @@ section {
   border-radius: 50%;
 }
 
+/* Hero photo reveal effect: Spider-Man shows by default, hovering
+   crossfades to the real photo underneath, like an unmasking */
+.hero-flip-photo {
+  position: relative;
+}
+
+.hero-photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 400ms ease;
+}
+
+.hero-photo-front {
+  opacity: 1;
+  z-index: 2;
+}
+
+.hero-photo-back {
+  opacity: 0;
+  z-index: 1;
+}
+
+.hero-flip-photo:hover .hero-photo-front {
+  opacity: 0;
+}
+
+.hero-flip-photo:hover .hero-photo-back {
+  opacity: 1;
+}
+
 .section__text {
   align-self: center;
   text-align: center;
