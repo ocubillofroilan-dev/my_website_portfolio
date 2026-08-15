@@ -345,6 +345,81 @@ section {
   text-align: center;
 }
 
+/* FLIP CARDS (About section only) */
+
+/* Outer wrapper: strips the padding/border/background that
+   .details-container normally has, since the front/back panels
+   below supply their own — otherwise you'd see a double border */
+#about .details-container.flip-card {
+  padding: 0;
+  background: none;
+  border: none;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  transition: transform 600ms;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Front sits in normal document flow, so it's what actually gives
+   the card its height (icon + "Education"/"Experience" only) */
+.flip-card-front {
+  position: relative;
+  backface-visibility: hidden;
+  border-radius: 2rem;
+  border: rgb(53, 53, 53) 0.1rem solid;
+  border-color: rgb(163, 163, 163);
+  background: white;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 180px;
+}
+
+/* Back is absolutely positioned to exactly overlay the front, and
+   pre-rotated 180deg so it only becomes readable once the whole
+   card has flipped */
+.flip-card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
+  border-radius: 2rem;
+  border: rgb(53, 53, 53) 0.1rem solid;
+  border-color: rgb(163, 163, 163);
+  background: white;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.flip-card-back h3 {
+  margin-bottom: 0.4rem;
+}
+
+.flip-card-back p {
+  font-size: 0.95rem;
+  margin: 0.1rem 0;
+}
+
 .section-container {
   gap: 4rem;
 }
