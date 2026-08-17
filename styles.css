@@ -199,35 +199,43 @@ section {
   border-radius: 50%;
 }
 
-/* Hero photo reveal effect: Spider-Man shows by default, hovering
-   crossfades to the real photo underneath, like an unmasking */
+/* Hero photo pixel-dissolve effect: a grid of Spider-Man tiles sits
+   over the real photo. Hovering fades each tile out with a slight
+   random delay (set inline by script.js), so it dissolves away in a
+   pixelated mosaic instead of a plain crossfade or wipe. */
 .hero-flip-photo {
   position: relative;
 }
 
-.hero-photo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: opacity 400ms ease;
-}
-
-.hero-photo-front {
-  opacity: 1;
-  z-index: 2;
-}
-
-.hero-photo-back {
-  opacity: 0;
+.hero-photo-base {
+  position: relative;
   z-index: 1;
 }
 
-.hero-flip-photo:hover .hero-photo-front {
-  opacity: 0;
+.pixel-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  border-radius: 50%;
+  overflow: hidden;
+  pointer-events: none;
 }
 
-.hero-flip-photo:hover .hero-photo-back {
+.pixel-tile {
+  background-image: var(--pixel-bg);
+  background-size: 800% 800%;
+  background-repeat: no-repeat;
+  transition: opacity 450ms ease, transform 450ms ease;
   opacity: 1;
+  transform: scale(1);
+}
+
+.hero-flip-photo:hover .pixel-tile {
+  opacity: 0;
+  transform: scale(0.4);
 }
 
 .section__text {
