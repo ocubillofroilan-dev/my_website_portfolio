@@ -556,15 +556,51 @@ article p {
   gap: 0.6rem;
   padding: 0.75rem 1.5rem;
   border: rgb(163, 163, 163) 0.1rem solid;
-  border-radius: 2rem;
+  border-radius: 0.6rem;
   white-space: nowrap;
   font-weight: 600;
   color: rgb(85, 85, 85);
+  background: white;
+  position: relative;
+  transition: transform 250ms ease, background-color 250ms ease,
+    color 250ms ease, border-color 250ms ease;
+}
+
+/* Pausing the whole track's scroll animation whenever any item in
+   it is hovered, so the row stops moving instead of sliding the
+   hovered item away mid-interaction */
+.marquee-track:has(.marquee-item:hover) {
+  animation-play-state: paused;
+}
+
+.marquee-item:hover {
+  transform: scale(1.08);
+  background: black;
+  color: white;
+  border-color: black;
+  z-index: 3;
 }
 
 .marquee-item .icon {
   cursor: default;
   height: 1.5rem;
+  width: 1.5rem;
+  object-fit: contain;
+  transition: filter 250ms ease;
+}
+
+.marquee-item:hover .icon {
+  filter: invert(1) brightness(2);
+}
+
+.marquee-icon {
+  font-size: 1.4rem;
+  color: rgb(60, 60, 60);
+  transition: color 250ms ease;
+}
+
+.marquee-item:hover .marquee-icon {
+  color: white;
 }
 
 @keyframes marquee-scroll {
