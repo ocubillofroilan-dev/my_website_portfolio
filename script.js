@@ -58,6 +58,58 @@ if (showMoreProjectsBtn) {
   });
 }
 
+// Project description toggle (expand/collapse), stopPropagation so
+// clicking it doesn't also trigger the card's image modal
+document.querySelectorAll(".description-toggle-btn").forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const desc = btn.nextElementSibling;
+    const isExpanded = desc.classList.toggle("expanded");
+    btn.innerHTML = isExpanded ? "Description &laquo;&laquo;&laquo;" : "Description &raquo;&raquo;&raquo;";
+  });
+});
+
+// Project image carousel (Instagram-style arrows). Reads the list
+// of image paths from each card's data-images attribute. If a card
+// only has one image, the arrows are hidden entirely — add more
+// paths to data-images in the HTML to enable cycling for that card.
+document.querySelectorAll(".project-card").forEach((card) => {
+  let images = [];
+  try {
+    images = JSON.parse(card.dataset.images || "[]");
+  } catch (err) {
+    images = [];
+  }
+
+  const leftArrow = card.querySelector(".carousel-arrow-left");
+  const rightArrow = card.querySelector(".carousel-arrow-right");
+  if (!leftArrow || !rightArrow) return;
+
+  if (images.length <= 1) {
+    leftArrow.style.display = "none";
+    rightArrow.style.display = "none";
+    return;
+  }
+
+  let index = 0;
+  const img = card.querySelector(".project-img");
+
+  const showImage = (newIndex) => {
+    index = (newIndex + images.length) % images.length;
+    img.src = images[index];
+  };
+
+  leftArrow.addEventListener("click", (e) => {
+    e.stopPropagation();
+    showImage(index - 1);
+  });
+
+  rightArrow.addEventListener("click", (e) => {
+    e.stopPropagation();
+    showImage(index + 1);
+  });
+});
+
 // Certificate modal (lightbox)
 const certModal = document.getElementById("cert-modal");
 const certModalImg = document.getElementById("cert-modal-img");
