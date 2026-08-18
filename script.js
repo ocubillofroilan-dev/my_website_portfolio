@@ -108,6 +108,37 @@ document.querySelectorAll(".project-card").forEach((card) => {
     e.stopPropagation();
     showImage(index + 1);
   });
+
+  // Touch swipe support (left/right finger swipe on mobile), in
+  // addition to the arrow buttons
+  const swipeTarget = card.querySelector(".article-container");
+  let touchStartX = 0;
+
+  swipeTarget.addEventListener(
+    "touchstart",
+    (e) => {
+      touchStartX = e.touches[0].clientX;
+    },
+    { passive: true }
+  );
+
+  swipeTarget.addEventListener(
+    "touchend",
+    (e) => {
+      const touchEndX = e.changedTouches[0].clientX;
+      const deltaX = touchEndX - touchStartX;
+      const swipeThreshold = 50;
+
+      if (Math.abs(deltaX) < swipeThreshold) return;
+
+      if (deltaX < 0) {
+        showImage(index + 1); // swiped left -> next image
+      } else {
+        showImage(index - 1); // swiped right -> previous image
+      }
+    },
+    { passive: true }
+  );
 });
 
 // Certificate modal (lightbox)
