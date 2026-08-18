@@ -575,9 +575,8 @@ article p {
 
 .marquee-item:hover {
   transform: scale(1.08);
-  background: black;
-  color: white;
-  border-color: black;
+  background: #ffe3e3;
+  border-color: #ff6b6b;
   z-index: 3;
 }
 
@@ -586,21 +585,11 @@ article p {
   height: 1.5rem;
   width: 1.5rem;
   object-fit: contain;
-  transition: filter 250ms ease;
-}
-
-.marquee-item:hover .icon {
-  filter: invert(1) brightness(2);
 }
 
 .marquee-icon {
   font-size: 1.4rem;
   color: rgb(60, 60, 60);
-  transition: color 250ms ease;
-}
-
-.marquee-item:hover .marquee-icon {
-  color: white;
 }
 
 @keyframes marquee-scroll {
@@ -684,14 +673,16 @@ article p {
 
 /* Description expand/collapse toggle */
 .description-toggle-btn {
+  display: block;
   background: none;
   border: none;
   color: rgb(53, 53, 53);
   font-weight: 600;
   font-size: 0.85rem;
   cursor: pointer;
-  margin-top: 0.4rem;
+  margin: 0.4rem auto 0 0;
   padding: 0;
+  text-align: left;
 }
 
 .description-toggle-btn:hover {
