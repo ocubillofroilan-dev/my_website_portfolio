@@ -87,7 +87,7 @@
   .section__pic-container {
     width: 46vw;
     height: 46vw;
-    margin: 0 auto;
+    margin: 0 auto 2rem;
   }
   #about .section__pic-container {
     width: 46vw;
