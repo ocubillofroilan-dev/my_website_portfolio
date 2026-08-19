@@ -630,11 +630,11 @@ article p {
   border-radius: 2rem;
 }
 
-/* Instagram-style carousel arrows, positioned outside the image
-   itself so they aren't clipped by the image box's overflow:hidden.
-   Always visible (not hover-gated) and styled as bold red icons,
-   matching the reference design. Hidden entirely for single-image
-   projects (see script.js). */
+/* Instagram-style carousel arrows, overlaid on the image corners
+   (not pushed outside the card) so they can't be blocked or
+   clipped by neighboring elements. Plain dark icon by default; on
+   hover, the circular background turns light gray. Hidden entirely
+   for single-image projects (see script.js). */
 .project-image-wrap {
   position: relative;
 }
@@ -643,26 +643,39 @@ article p {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: none;
+  background: transparent;
   border: none;
-  color: #e63946;
-  font-size: 1.6rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   z-index: 3;
-  padding: 0.25rem;
-  transition: color 200ms ease, transform 200ms ease;
+  transition: background-color 200ms ease;
 }
 
 .carousel-arrow:hover {
-  color: #b3212e;
+  background: rgb(224, 224, 224);
+}
+
+.carousel-arrow svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: none;
+  stroke: rgb(51, 51, 51);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .carousel-arrow-left {
-  left: -1.6rem;
+  left: 0.4rem;
 }
 
 .carousel-arrow-right {
-  right: -1.6rem;
+  right: 0.4rem;
 }
 
 /* Description expand/collapse toggle */
