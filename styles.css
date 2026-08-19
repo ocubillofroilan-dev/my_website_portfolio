@@ -2,6 +2,13 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
+:root {
+  --color-primary: #6a3ea1;
+  --color-primary-dark: #4b2874;
+  --color-accent-light: #ede0fa;
+  --color-accent-border: #b685e0;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -52,14 +59,14 @@ nav {
 a {
   color: black;
   text-decoration: none;
-  text-decoration-color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 2rem;
+  transition: background-color 250ms ease, color 250ms ease;
 }
 
 a:hover {
-  color: grey;
-  text-decoration: underline;
-  text-underline-offset: 1rem;
-  text-decoration-color: rgb(181, 181, 181);
+  color: var(--color-primary);
+  background-color: var(--color-accent-light);
 }
 
 .logo {
@@ -200,45 +207,6 @@ section {
   border-radius: 50%;
 }
 
-/* Hero photo pixel-dissolve effect: a grid of Spider-Man tiles sits
-   over the real photo. Hovering fades each tile out with a slight
-   random delay (set inline by script.js), so it dissolves away in a
-   pixelated mosaic instead of a plain crossfade or wipe. */
-.hero-flip-photo {
-  position: relative;
-}
-
-.hero-photo-base {
-  position: relative;
-  z-index: 1;
-}
-
-.pixel-grid {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(8, 1fr);
-  border-radius: 50%;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.pixel-tile {
-  background-image: var(--pixel-bg);
-  background-size: 800% 800%;
-  background-repeat: no-repeat;
-  transition: opacity 450ms ease, transform 450ms ease;
-  opacity: 1;
-  transform: scale(1);
-}
-
-.hero-flip-photo:hover .pixel-tile {
-  opacity: 0;
-  transform: scale(0.4);
-}
-
 .section__text {
   align-self: center;
   text-align: center;
@@ -250,6 +218,7 @@ section {
 
 .section__text__p1 {
   text-align: center;
+  color: var(--color-primary);
 }
 
 .section__text__p2 {
@@ -295,7 +264,7 @@ section {
 
 .btn-color-1,
 .btn-color-2 {
-  border: rgb(53, 53, 53) 0.1rem solid;
+  border: var(--color-primary) 0.1rem solid;
 }
 
 .btn-color-1:hover,
@@ -305,20 +274,21 @@ section {
 
 .btn-color-1,
 .btn-color-2:hover {
-  background: rgb(53, 53, 53);
+  background: var(--color-primary);
   color: white;
 }
 
 .btn-color-1:hover {
-  background: rgb(0, 0, 0);
+  background: var(--color-primary-dark);
 }
 
 .btn-color-2 {
   background: none;
+  color: var(--color-primary);
 }
 
 .btn-color-2:hover {
-  border: rgb(255, 255, 255) 0.1rem solid;
+  border: var(--color-primary) 0.1rem solid;
 }
 
 .btn-container {
@@ -576,8 +546,8 @@ article p {
 
 .marquee-item:hover {
   transform: scale(1.08);
-  background: #ffe3e3;
-  border-color: #ff6b6b;
+  background: var(--color-accent-light);
+  border-color: var(--color-accent-border);
   z-index: 3;
 }
 
@@ -660,14 +630,14 @@ article p {
 }
 
 .carousel-arrow:hover {
-  background: rgb(224, 224, 224);
+  background: var(--color-accent-light);
 }
 
 .carousel-arrow svg {
   width: 1.2rem;
   height: 1.2rem;
   fill: none;
-  stroke: rgb(51, 51, 51);
+  stroke: var(--color-primary);
   stroke-width: 3;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -686,7 +656,7 @@ article p {
   display: block;
   background: none;
   border: none;
-  color: rgb(53, 53, 53);
+  color: var(--color-primary);
   font-weight: 600;
   font-size: 0.85rem;
   cursor: pointer;
@@ -743,7 +713,7 @@ article p {
 .project-card:hover,
 .certificate-card:hover {
   transform: perspective(600px) rotateX(4deg) rotateY(-4deg) translateY(-6px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 24px rgba(106, 62, 161, 0.25);
 }
 
 /* PROJECT MODAL (lightbox) */

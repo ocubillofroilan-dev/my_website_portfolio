@@ -5,27 +5,6 @@ function toggleMenu() {
   icon.classList.toggle("open");
 }
 
-// Builds the pixel-dissolve tile grid over the hero photo. Each
-// tile shows one slice of the Spider-Man image (via background
-// position/size), and gets a small random transition-delay so the
-// tiles fade out at slightly different times on hover, instead of
-// all at once.
-const pixelGrid = document.getElementById("pixel-grid");
-if (pixelGrid) {
-  const cols = 8;
-  const rows = 8;
-
-  for (let r = 0; r < rows; r++) {
-    for (let c = 0; c < cols; c++) {
-      const tile = document.createElement("div");
-      tile.className = "pixel-tile";
-      tile.style.backgroundPosition = `${(c * 100) / (cols - 1)}% ${(r * 100) / (rows - 1)}%`;
-      tile.style.transitionDelay = `${Math.random() * 250}ms`;
-      pixelGrid.appendChild(tile);
-    }
-  }
-}
-
 // Show More / Show Less toggle for certificates
 const showMoreBtn = document.getElementById("show-more-btn");
 if (showMoreBtn) {
