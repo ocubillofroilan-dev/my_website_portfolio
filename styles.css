@@ -637,6 +637,7 @@ article p {
    for single-image projects (see script.js). */
 .project-image-wrap {
   position: relative;
+  isolation: isolate;
 }
 
 .carousel-arrow {
@@ -652,7 +653,8 @@ article p {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 3;
+  z-index: 10;
+  pointer-events: auto;
   transition: background-color 200ms ease;
 }
 
