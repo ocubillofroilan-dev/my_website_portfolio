@@ -40,19 +40,21 @@
       </div>
     </nav>
     <section id="profile">
-      <div class="section__pic-container">
-        <img src="./images/froilan.png" alt="Froilan Ocubillo profile picture" />
+      <div class="hero-photo-frame">
+        <div class="section__pic-container">
+          <img src="./images/froilan.png" alt="Froilan Ocubillo profile picture" />
+        </div>
       </div>
       <div class="section__text">
-        <p class="section__text__p1">Hello, I'm</p>
+        <p class="section__text__p1 hero-badge">Hello, I'm</p>
         <h1 class="title">Froilan Ocubillo</h1>
-        <p class="section__text__p2">Computer Engineering Graduate</p>
+        <p class="section__text__p2 hero-role-badge">Computer Engineering Graduate</p>
         <div class="btn-container">
           <button
             class="btn btn-color-2"
-            onclick="window.open('./images/Froilan_Ocubillo_Updated_Resume.pdf')"
+            onclick="openResumeModal()"
           >
-            Download CV
+            View Resume
           </button>
           <button class="btn btn-color-1" onclick="location.href='#contact'">
             Contact Info
@@ -80,84 +82,127 @@
         </div>
       </div>
     </section>
+    <div class="resume-modal" id="resume-modal">
+      <div class="resume-modal-content">
+        <span class="resume-modal-close" id="resume-modal-close">&times;</span>
+        <iframe
+          id="resume-modal-iframe"
+          src="./images/Froilan_Ocubillo_Updated_Resume.pdf"
+          title="Froilan Ocubillo Resume"
+        ></iframe>
+        <a
+          class="btn btn-color-1 resume-download-btn"
+          href="./images/Froilan_Ocubillo_Updated_Resume.pdf"
+          download
+        >
+          Download Resume
+        </a>
+      </div>
+    </div>
     <section id="about">
   <p class="section__text__p1">Get To Know More</p>
   <h1 class="title">About Me</h1>
-  <div class="section-container">
-    <div class="section__pic-container">
-      <img
-        src="./images/graduate.png"
-        alt="Profile picture"
-        class="about-pic"
-      />
+
+  <h2 class="about-subheading">Education</h2>
+  <div class="education-timeline">
+    <div class="timeline-node">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>Elementary School</h3>
+        <div class="timeline-hover-detail">
+          <p>[Elementary School Name] | [City, Province]</p>
+          <p>[Years Attended]</p>
+        </div>
+      </div>
     </div>
-    <div class="about-details-container">
-      <div class="about-containers">
-        <div class="details-container flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <img
-                src="./images/graduation.png"
-                alt="Education icon"
-                class="icon"
-              />
-              <h3>Education</h3>
-              <p>Bachelor of Science in  <br /> Computer Engineering</p>
-            </div>
-            <div class="flip-card-back">
-              <h3>Pamantasan ng Lungsod ng San Pablo | San Pablo, Laguna</h3>
-              <p>Graduated 2024</p>
-            </div>
-          </div>
+    <div class="timeline-node">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>Junior High School</h3>
+        <div class="timeline-hover-detail">
+          <p>[Junior High School Name] | [City, Province]</p>
+          <p>[Years Attended]</p>
         </div>
-        <div class="details-container flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <img
-                src="./images/portfolios.png"
-                alt="Experience icon"
-                class="icon"
-              />
-              <h3>Experience</h3>
-              <p>Healthcare Customer Service Representative</p>
-            </div>
-            <div class="flip-card-back">
-              <h3>Nextvas | Los Baños, Laguna</h3>
-              <p>November 2024 – February 2026</p>
-              <p>Top Performer and Top QA</p>
-            </div>
-          </div>
+      </div>
+    </div>
+    <div class="timeline-node">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>Senior High School</h3>
+        <div class="timeline-hover-detail">
+          <p>[Senior High School Name] | [Strand] | [City, Province]</p>
+          <p>[Years Attended]</p>
         </div>
-        <div class="details-container flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <img src="./images/portfolios.png" alt="Experience icon" class="icon" />
-              <h3>Experience</h3>
-              <p>Engineering Department Intern</p>
-            </div>
-            <div class="flip-card-back">
-              <h3>Furukawa Automotive Systems LIMA Phils., Inc. | Lipa City, Batangas</h3>
-              <p>June 2023 – September 2023</p>
-              <p>Completion and Perfect attendance</p>
-            </div>
-          </div>
-        </div>
-        <div class="details-container flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <img src="./images/portfolios.png" alt="Experience icon" class="icon" />
-              <h3>Experience</h3>
-              <p>Store Staff &amp; Cashier</p>
-            </div>
-            <div class="flip-card-back">
-              <h3>Telay Store 888 | Masapang, Victoria, Laguna</h3>
-              <p>November 2021 – June 2023</p>
-            </div>
-          </div>
+      </div>
+    </div>
+    <div class="timeline-node">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <h3>College</h3>
+        <div class="timeline-hover-detail">
+          <p>Pamantasan ng Lungsod ng San Pablo | San Pablo, Laguna</p>
+          <p>Bachelor of Science in Computer Engineering</p>
+          <p>Graduated 2024</p>
         </div>
       </div>
     </div>
   </div>
+
+  <h2 class="about-subheading">Experience</h2>
+  <div class="experience-columns">
+    <div class="details-container flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-icon-badge">
+            <img
+              src="./images/portfolios.png"
+              alt="Experience icon"
+              class="icon"
+            />
+          </div>
+          <h3>Experience</h3>
+          <p>Healthcare Customer Service Representative</p>
+        </div>
+        <div class="flip-card-back">
+          <h3>Nextvas | Los Ba&ntilde;os, Laguna</h3>
+          <p>November 2024 &ndash; February 2026</p>
+          <p>Top Performer and Top QA</p>
+        </div>
+      </div>
+    </div>
+    <div class="details-container flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-icon-badge">
+            <img src="./images/portfolios.png" alt="Experience icon" class="icon" />
+          </div>
+          <h3>Experience</h3>
+          <p>Engineering Department Intern</p>
+        </div>
+        <div class="flip-card-back">
+          <h3>Furukawa Automotive Systems LIMA Phils., Inc. | Lipa City, Batangas</h3>
+          <p>June 2023 &ndash; September 2023</p>
+          <p>Completion and Perfect attendance</p>
+        </div>
+      </div>
+    </div>
+    <div class="details-container flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="flip-icon-badge">
+            <img src="./images/portfolios.png" alt="Experience icon" class="icon" />
+          </div>
+          <h3>Experience</h3>
+          <p>Store Staff &amp; Cashier</p>
+        </div>
+        <div class="flip-card-back">
+          <h3>Telay Store 888 | Masapang, Victoria, Laguna</h3>
+          <p>November 2021 &ndash; June 2023</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="text-container">
     <p>
     A self-taught developer and aspiring software engineer, 
@@ -390,7 +435,7 @@
                 class="project-img"
               />
             </div>
-            <h2 class="experience-sub-title project-title">Responsive Web Design - freeCodeCamp</h2>
+            <h2 class="experience-sub-title project-title">Certificate Name 1</h2>
           </div>
           <div class="details-container color-container certificate-card" data-name="Certificate Name 2">
             <div class="article-container">
@@ -400,7 +445,7 @@
                 class="project-img"
               />
             </div>
-            <h2 class="experience-sub-title project-title">Python - freeCodeCamp</h2>
+            <h2 class="experience-sub-title project-title">Certificate Name 2</h2>
           </div>
           <div class="details-container color-container certificate-card" data-name="Certificate Name 3">
             <div class="article-container">
@@ -410,7 +455,7 @@
                 class="project-img"
               />
             </div>
-            <h2 class="experience-sub-title project-title">Relational Databases - freeCodeCamp</h2>
+            <h2 class="experience-sub-title project-title">Certificate Name 3</h2>
           </div>
           <div class="details-container color-container certificate-card" data-name="Certificate Name 4">
             <div class="article-container">
@@ -420,7 +465,7 @@
                 class="project-img"
               />
             </div>
-            <h2 class="experience-sub-title project-title">Python Essentials 1 - Cisco NetAcad</h2>
+            <h2 class="experience-sub-title project-title">Certificate Name 4</h2>
           </div>
           <div class="details-container color-container certificate-card" data-name="Certificate Name 5">
             <div class="article-container">
@@ -430,7 +475,7 @@
                 class="project-img"
               />
             </div>
-            <h2 class="experience-sub-title project-title">Networking Basics - Cisco NetAcad</h2>
+            <h2 class="experience-sub-title project-title">Certificate Name 5</h2>
           </div>
           <div class="details-container color-container certificate-card" data-name="Certificate Name 6">
             <div class="article-container">
@@ -440,7 +485,7 @@
                 class="project-img"
               />
             </div>
-            <h2 class="experience-sub-title project-title">Introduction to Computer Systems Servicing - eTESDA</h2>
+            <h2 class="experience-sub-title project-title">Certificate Name 6</h2>
           </div>
 
           <div class="details-container color-container certificate-card certificate-hidden" data-name="Certificate Name 7">
@@ -451,7 +496,7 @@
                 class="project-img"
               />
             </div>
-            <h2 class="experience-sub-title project-title">Installing and Configuring Computer Systems - eTESDA</h2>
+            <h2 class="experience-sub-title project-title">Certificate Name 7</h2>
           </div>
           <div class="details-container color-container certificate-card certificate-hidden" data-name="Certificate Name 8">
             <div class="article-container">
@@ -461,29 +506,8 @@
                 class="project-img"
               />
             </div>
-            <h2 class="experience-sub-title project-title">Setting Up Computer Networks - eTESDA</h2>
+            <h2 class="experience-sub-title project-title">Certificate Name 8</h2>
           </div>
-          <div class="details-container color-container certificate-card certificate-hidden" data-name="Certificate Name 8">
-            <div class="article-container">
-              <img
-                src="./images/cert8.png"
-                alt="Certificate 8"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">Setting Up Computer Servers - eTESDA</h2>
-          </div>
-          <div class="details-container color-container certificate-card certificate-hidden" data-name="Certificate Name 8">
-            <div class="article-container">
-              <img
-                src="./images/cert8.png"
-                alt="Certificate 8"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">Maintaining Computer Systems and Networks - eTESDA</h2>
-          </div>
-          
 
           <!-- Add new certificates below as certificate-hidden. They'll
                show up once "Show More" is clicked. Copy this block,
@@ -537,6 +561,23 @@
           <p><a href="https://github.com/ocubillofroilan-dev">GitHub</a></p>
         </div>
       </div>
+
+      <!-- Sends directly to your email via Formspree — no backend
+           needed. To activate: sign up free at https://formspree.io,
+           create a new form, and replace YOUR_FORM_ID below with the
+           ID they give you (looks like https://formspree.io/f/abcdwxyz) -->
+      <form
+        id="contact-form"
+        class="contact-form"
+        action="https://formspree.io/f/YOUR_FORM_ID"
+        method="POST"
+      >
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn btn-color-1 contact-submit-btn">Send Message</button>
+        <p id="contact-form-status" class="contact-form-status"></p>
+      </form>
     </section>
     <footer>
       <nav>
