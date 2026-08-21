@@ -5,6 +5,57 @@ function toggleMenu() {
   icon.classList.toggle("open");
 }
 
+// Resume viewer modal
+const resumeModal = document.getElementById("resume-modal");
+const resumeModalClose = document.getElementById("resume-modal-close");
+
+function openResumeModal() {
+  resumeModal.classList.add("resume-modal-open");
+}
+
+function closeResumeModal() {
+  resumeModal.classList.remove("resume-modal-open");
+}
+
+resumeModalClose.addEventListener("click", closeResumeModal);
+resumeModal.addEventListener("click", (e) => {
+  if (e.target === resumeModal) closeResumeModal();
+});
+
+// Contact form -> submits to Formspree via fetch, so the visitor
+// stays on the page and sees an inline confirmation instead of
+// being redirected away after sending.
+const contactForm = document.getElementById("contact-form");
+const contactStatus = document.getElementById("contact-form-status");
+
+if (contactForm) {
+  contactForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    contactStatus.textContent = "Sending...";
+    contactStatus.className = "contact-form-status";
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: "POST",
+        body: new FormData(contactForm),
+        headers: { Accept: "application/json" },
+      });
+
+      if (response.ok) {
+        contactStatus.textContent = "Message sent! I'll get back to you soon.";
+        contactStatus.className = "contact-form-status success";
+        contactForm.reset();
+      } else {
+        contactStatus.textContent = "Something went wrong. Please try again.";
+        contactStatus.className = "contact-form-status error";
+      }
+    } catch (err) {
+      contactStatus.textContent = "Something went wrong. Please try again.";
+      contactStatus.className = "contact-form-status error";
+    }
+  });
+}
+
 // Show More / Show Less toggle for certificates
 const showMoreBtn = document.getElementById("show-more-btn");
 if (showMoreBtn) {
@@ -173,5 +224,6 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     closeCertModal();
     closeProjectModal();
+    closeResumeModal();
   }
 });
