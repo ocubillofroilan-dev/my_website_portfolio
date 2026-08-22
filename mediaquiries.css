@@ -41,6 +41,10 @@
   .about-containers {
     margin-top: 0;
   }
+  .about-two-column,
+  .contact-two-column {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media screen and (max-width: 600px) {
