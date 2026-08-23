@@ -5,6 +5,47 @@ function toggleMenu() {
   icon.classList.toggle("open");
 }
 
+// Dark mode toggle — persists the choice in localStorage and keeps
+// both the desktop and mobile toggle buttons' icons in sync.
+const THEME_KEY = "portfolio-theme";
+const themeToggleBtns = document.querySelectorAll(".theme-toggle-btn");
+
+function applyTheme(theme) {
+  document.body.classList.toggle("dark-mode", theme === "dark");
+  themeToggleBtns.forEach((btn) => {
+    const icon = btn.querySelector("i");
+    if (icon) {
+      icon.className = theme === "dark" ? "fa-solid fa-sun" : "fa-solid fa-moon";
+    }
+  });
+}
+
+function toggleTheme() {
+  const isDark = document.body.classList.contains("dark-mode");
+  const nextTheme = isDark ? "light" : "dark";
+  applyTheme(nextTheme);
+  try {
+    localStorage.setItem(THEME_KEY, nextTheme);
+  } catch (err) {
+    // localStorage unavailable (e.g. private browsing) — theme just
+    // won't persist across visits.
+  }
+}
+
+// Restore saved preference on load, falling back to the visitor's
+// OS-level preference if they haven't chosen one on this site yet.
+(function initTheme() {
+  let saved = null;
+  try {
+    saved = localStorage.getItem(THEME_KEY);
+  } catch (err) {
+    saved = null;
+  }
+  const prefersDark =
+    window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  applyTheme(saved || (prefersDark ? "dark" : "light"));
+})();
+
 // Resume viewer modal
 const resumeModal = document.getElementById("resume-modal");
 const resumeModalClose = document.getElementById("resume-modal-close");

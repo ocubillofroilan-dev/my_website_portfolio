@@ -1,12 +1,31 @@
 /* GENERAL */
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
 
 :root {
   --color-primary: #6a3ea1;
   --color-primary-dark: #4b2874;
   --color-accent-light: #ede0fa;
   --color-accent-border: #b685e0;
+
+  --bg: #faf8f3;
+  --bg-alt: #ffffff;
+  --surface-muted: #f2efe6;
+  --text: #111111;
+  --text-secondary: #57534e;
+  --border: #111111;
+}
+
+body.dark-mode {
+  --color-accent-light: #2b2140;
+  --color-accent-border: #6a3ea1;
+
+  --bg: #0e0e0e;
+  --bg-alt: #1a1a1a;
+  --surface-muted: #202020;
+  --text: #f5f4f0;
+  --text-secondary: #b3ada2;
+  --border: #f5f4f0;
 }
 
 * {
@@ -18,6 +37,9 @@ body {
   font-family: "Poppins", sans-serif;
   max-width: 1800px;
   margin: 0 auto;
+  background: var(--bg);
+  color: var(--text);
+  transition: background-color 300ms ease, color 300ms ease;
 }
 
 html {
@@ -25,7 +47,7 @@ html {
 }
 
 p {
-  color: rgb(85, 85, 85);
+  color: var(--text-secondary);
 }
 
 /* TRANSITION */
@@ -43,21 +65,28 @@ nav,
 }
 
 nav {
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  min-height: 17vh;
-  padding: 1rem 0;
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 1.5rem auto 0;
+  padding: 0.6rem 0.9rem 0.6rem 1.6rem;
   box-sizing: border-box;
+  border: 0.15rem solid var(--border);
+  border-radius: 3rem;
+  background: var(--bg-alt);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
 .nav-links {
-  gap: 2rem;
+  gap: 1.75rem;
   list-style: none;
-  font-size: 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 a {
-  color: black;
+  color: var(--text);
   text-decoration: none;
   padding: 0.3rem 0.8rem;
   border-radius: 2rem;
@@ -70,19 +99,53 @@ a:hover {
 }
 
 .logo {
-  font-size: clamp(1.25rem, 4vw, 2rem);
+  font-size: 1.15rem;
+  font-weight: 700;
 }
 
 .logo:hover {
   cursor: default;
 }
 
+/* THEME TOGGLE BUTTON */
+
+.theme-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.6rem;
+  height: 2.6rem;
+  background: var(--text);
+  color: var(--bg);
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  font-size: 1.05rem;
+  transition: transform 200ms ease, background-color 250ms ease,
+    color 250ms ease;
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.08);
+  background: var(--color-primary);
+  color: white;
+}
+
+.theme-toggle-btn i {
+  pointer-events: none;
+}
+
 /* HAMBURGER MENU */
 
 #hamburger-nav {
   display: none;
-  padding: 0 1rem;
-  box-sizing: border-box;
+}
+
+.hamburger-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 
 .hamburger-menu {
@@ -102,7 +165,7 @@ a:hover {
 .hamburger-icon span {
   width: 100%;
   height: 2px;
-  background-color: black;
+  background-color: var(--text);
   transition: all 0.3 ease-in-out;
 }
 
@@ -110,7 +173,9 @@ a:hover {
   position: absolute;
   top: 100%;
   right: 0;
-  background-color: white;
+  background-color: var(--bg-alt);
+  border: 0.13rem solid var(--border);
+  border-radius: 1rem;
   width: fit-content;
   max-height: 0;
   overflow: hidden;
@@ -123,7 +188,7 @@ a:hover {
   padding: 10px;
   text-align: center;
   font-size: 1.5rem;
-  color: black;
+  color: var(--text);
   text-decoration: none;
   transition: all 0.3 ease-in-out;
 }
@@ -216,8 +281,8 @@ section {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  background: white;
-  color: rgb(60, 60, 60);
+  background: var(--bg-alt);
+  color: var(--text);
   font-size: 0.75rem;
   font-weight: 600;
   padding: 0.4rem 0.8rem;
@@ -262,7 +327,7 @@ section {
 }
 
 .hero-subtitle {
-  color: rgb(85, 85, 85);
+  color: var(--text-secondary);
   font-weight: 500;
   font-size: clamp(1rem, 2vw, 1.15rem);
   margin-top: 0.5rem;
@@ -296,6 +361,8 @@ section {
 
 .title {
   font-size: clamp(1.75rem, 5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
   text-align: center;
   margin-top: 0.5rem;
 }
@@ -324,39 +391,33 @@ section {
 
 .btn {
   font-weight: 600;
-  transition: all 300ms ease;
+  transition: all 250ms ease;
   padding: 1rem 1.75rem;
   width: auto;
-  border-radius: 2rem;
-}
-
-.btn-color-1,
-.btn-color-2 {
-  border: var(--color-primary) 0.1rem solid;
-}
-
-.btn-color-1:hover,
-.btn-color-2:hover {
+  border-radius: 1rem;
+  border: 0.13rem solid var(--border);
   cursor: pointer;
 }
 
-.btn-color-1,
-.btn-color-2:hover {
-  background: var(--color-primary);
-  color: white;
+.btn-color-1 {
+  background: var(--text);
+  color: var(--bg);
 }
 
 .btn-color-1:hover {
-  background: var(--color-primary-dark);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
 }
 
 .btn-color-2 {
-  background: none;
-  color: var(--color-primary);
+  background: var(--bg-alt);
+  color: var(--text);
 }
 
 .btn-color-2:hover {
-  border: var(--color-primary) 0.1rem solid;
+  background: var(--text);
+  color: var(--bg);
 }
 
 .btn-container {
@@ -457,8 +518,8 @@ section {
 }
 
 .timeline-content {
-  background: white;
-  border: rgb(163, 163, 163) 0.1rem solid;
+  background: var(--bg-alt);
+  border: var(--border) 0.1rem solid;
   border-radius: 1.2rem;
   padding: 1rem 1.5rem;
   cursor: default;
@@ -471,7 +532,7 @@ section {
 }
 
 .timeline-content h3 {
-  color: black;
+  color: var(--text);
 }
 
 .timeline-hover-detail {
@@ -500,8 +561,8 @@ section {
   margin: 2rem auto 0;
   padding: 1rem 2rem;
   border-radius: 3rem;
-  border: rgb(163, 163, 163) 0.1rem solid;
-  background: white;
+  border: var(--border) 0.1rem solid;
+  background: var(--bg-alt);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
 }
 
@@ -510,7 +571,7 @@ section {
   align-items: center;
   gap: 0.5rem;
   padding: 0;
-  color: rgb(85, 85, 85);
+  color: var(--text-secondary);
   font-weight: 600;
   font-size: 0.95rem;
   border-radius: 0;
@@ -529,7 +590,8 @@ section {
 .contact-pill-divider {
   width: 0.1rem;
   height: 1.5rem;
-  background: rgb(220, 220, 220);
+  background: var(--text-secondary);
+  opacity: 0.3;
 }
 
 .about-pic {
@@ -551,10 +613,10 @@ section {
 .details-container {
   padding: 1.5rem;
   flex: 1;
-  background: white;
+  background: var(--bg-alt);
   border-radius: 2rem;
-  border: rgb(53, 53, 53) 0.1rem solid;
-  border-color: rgb(163, 163, 163);
+  border: var(--border) 0.1rem solid;
+  border-color: var(--border);
   text-align: center;
 }
 
@@ -588,9 +650,9 @@ section {
   width: 100%;
   backface-visibility: hidden;
   border-radius: 2rem;
-  border: rgb(53, 53, 53) 0.1rem solid;
-  border-color: rgb(163, 163, 163);
-  background: white;
+  border: var(--border) 0.1rem solid;
+  border-color: var(--border);
+  background: var(--bg-alt);
   padding: 1.5rem;
   box-sizing: border-box;
   display: flex;
@@ -612,9 +674,9 @@ section {
   backface-visibility: hidden;
   transform: rotateY(180deg);
   border-radius: 2rem;
-  border: rgb(53, 53, 53) 0.1rem solid;
-  border-color: rgb(163, 163, 163);
-  background: white;
+  border: var(--border) 0.1rem solid;
+  border-color: var(--border);
+  background: var(--bg-alt);
   padding: 1.5rem;
   box-sizing: border-box;
   display: flex;
@@ -646,7 +708,7 @@ section {
 }
 
 .experience-sub-title {
-  color: rgb(85, 85, 85);
+  color: var(--text-secondary);
   font-weight: 600;
   font-size: clamp(1.25rem, 3vw, 2rem);
   margin-bottom: 2rem;
@@ -729,12 +791,12 @@ article p {
   align-items: center;
   gap: 0.6rem;
   padding: 0.75rem 1.5rem;
-  border: rgb(163, 163, 163) 0.1rem solid;
+  border: var(--border) 0.1rem solid;
   border-radius: 0.6rem;
   white-space: nowrap;
   font-weight: 600;
-  color: rgb(85, 85, 85);
-  background: white;
+  color: var(--text-secondary);
+  background: var(--bg-alt);
   position: relative;
   transition: transform 250ms ease, background-color 250ms ease,
     color 250ms ease, border-color 250ms ease;
@@ -763,7 +825,7 @@ article p {
 
 .marquee-icon {
   font-size: 1.4rem;
-  color: rgb(60, 60, 60);
+  color: var(--text-secondary);
 }
 
 @keyframes marquee-scroll {
@@ -790,8 +852,8 @@ article p {
 }
 
 .color-container {
-  border-color: rgb(163, 163, 163);
-  background: rgb(250, 250, 250);
+  border-color: var(--border);
+  background: var(--surface-muted);
 }
 
 #projects .article-container,
@@ -895,13 +957,13 @@ article p {
 
 .project-title {
   margin: 1rem;
-  color: black;
+  color: var(--text);
   font-size: 1.3rem;
 }
 
 .project-btn {
-  color: black;
-  border-color: rgb(163, 163, 163);
+  color: var(--text);
+  border-color: var(--border);
 }
 
 /* Same "bend a little" hover tilt, plus click-to-popup, applied to
@@ -1057,7 +1119,7 @@ article p {
 }
 
 .resume-modal-content {
-  background: white;
+  background: var(--bg-alt);
   border-radius: 1.5rem;
   padding: 1.5rem;
   width: 100%;
@@ -1109,8 +1171,8 @@ article p {
   display: flex;
   justify-content: center;
   border-radius: 2rem;
-  border: rgb(53, 53, 53) 0.1rem solid;
-  border-color: rgb(163, 163, 163);
+  border: var(--border) 0.1rem solid;
+  border-color: var(--border);
   background: (250, 250, 250);
   margin: 2rem auto;
   padding: 0.5rem;
@@ -1130,6 +1192,14 @@ article p {
 
 .contact-icon {
   cursor: default;
+}
+
+/* Simple black glyph icons (email/LinkedIn/GitHub) need inverting in
+   dark mode so they stay visible against dark surfaces; the colorful
+   devicon/tech-stack logos are left alone. */
+body.dark-mode #socials-container .icon,
+body.dark-mode .contact-pill-item .icon {
+  filter: invert(1) brightness(1.6);
 }
 
 /* FOOTER SECTION */
@@ -1168,6 +1238,8 @@ footer p {
   }
   #hamburger-nav {
     display: flex;
+    margin: 1rem 1rem 0;
+    padding: 0.55rem 0.6rem 0.55rem 1.3rem;
   }
   #experience,
   .experience-details-container {

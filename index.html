@@ -20,21 +20,39 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
+      <button
+        class="theme-toggle-btn"
+        id="theme-toggle-btn"
+        aria-label="Toggle dark mode"
+        onclick="toggleTheme()"
+      >
+        <i class="fa-solid fa-moon"></i>
+      </button>
     </nav>
     <nav id="hamburger-nav">
       <div class="logo">Froilan Ocubillo</div>
-      <div class="hamburger-menu">
-        <div class="hamburger-icon" onclick="toggleMenu()">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div class="menu-links">
-          <li><a href="#about" onclick="toggleMenu()">About</a></li>
-          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-          <li><a href="#certificates" onclick="toggleMenu()">Certificates</a></li>
-          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+      <div class="hamburger-nav-right">
+        <button
+          class="theme-toggle-btn"
+          id="theme-toggle-btn-mobile"
+          aria-label="Toggle dark mode"
+          onclick="toggleTheme()"
+        >
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <div class="hamburger-menu">
+          <div class="hamburger-icon" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="menu-links">
+            <li><a href="#about" onclick="toggleMenu()">About</a></li>
+            <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+            <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+            <li><a href="#certificates" onclick="toggleMenu()">Certificates</a></li>
+            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+          </div>
         </div>
       </div>
     </nav>
