@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="mediaquiries.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   </head>
   <body>
@@ -43,19 +42,19 @@
       <div class="hero-photo-frame">
         <div class="section__pic-container">
           <img src="./images/froilan.png" alt="Froilan Ocubillo profile picture" />
+          <span class="availability-badge">
+            <span class="availability-dot"></span>Available for Work
+          </span>
         </div>
       </div>
       <div class="section__text">
         <p class="section__text__p1 hero-badge">Hello, I'm</p>
         <h1 class="title">Froilan Ocubillo</h1>
-        <p class="section__text__p2 hero-role-badge">Computer Engineering Graduate</p>
-        <button
-          class="btn btn-color-1 view-resume-btn"
-          onclick="openResumeModal()"
-        >
-          View Resume
-        </button>
+        <p class="section__text__p2 hero-subtitle">Computer Engineering Graduate</p>
         <div class="btn-container">
+          <button class="btn btn-color-2" onclick="openResumeModal()">
+            View Resume
+          </button>
           <button class="btn btn-color-1" onclick="location.href='#contact'">
             Contact Info
           </button>
@@ -520,44 +519,22 @@
         <p class="cert-modal-title" id="cert-modal-title"></p>
       </div>
     <section id="contact">
-      <p class="section__text__p1">Get in Touch</p>
       <h1 class="title">Contact Me</h1>
-      <div class="contact-two-column">
-        <div class="contact-channels">
-          <a href="mailto:ocubillofroilan@gmail.com" class="contact-channel-row">
-            <img src="./images/email.png" alt="Email icon" class="icon contact-icon" />
-            <span>ocubillofroilan@gmail.com</span>
-          </a>
-          <a href="https://www.linkedin.com/in/froilan-ocubillo-834609409/" class="contact-channel-row">
-            <img src="./images/linkedin.png" alt="LinkedIn icon" class="icon contact-icon" />
-            <span>LinkedIn</span>
-          </a>
-          <a href="https://github.com/ocubillofroilan-dev" class="contact-channel-row">
-            <img src="./images/github.png" alt="GitHub icon" class="icon contact-icon" />
-            <span>GitHub</span>
-          </a>
-          <a href="tel:[Phone Number]" class="contact-channel-row">
-            <img src="./images/email.png" alt="Phone icon" class="icon contact-icon" />
-            <span>[Phone Number]</span>
-          </a>
-        </div>
-
-        <!-- Sends directly to your email via Formspree — no backend
-             needed. To activate: sign up free at https://formspree.io,
-             create a new form, and replace YOUR_FORM_ID below with the
-             ID they give you (looks like https://formspree.io/f/abcdwxyz) -->
-        <form
-          id="contact-form"
-          class="contact-form"
-          action="https://formspree.io/f/YOUR_FORM_ID"
-          method="POST"
-        >
-          <input type="text" name="name" placeholder="Your Name" required />
-          <input type="email" name="email" placeholder="Your Email" required />
-          <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-          <button type="submit" class="btn btn-color-1 contact-submit-btn">Send Message</button>
-          <p id="contact-form-status" class="contact-form-status"></p>
-        </form>
+      <div class="contact-pill">
+        <a href="mailto:ocubillofroilan@gmail.com" class="contact-pill-item">
+          <img src="./images/email.png" alt="Email icon" class="icon contact-icon" />
+          <span>ocubillofroilan@gmail.com</span>
+        </a>
+        <span class="contact-pill-divider"></span>
+        <a href="https://www.linkedin.com/in/froilan-ocubillo-834609409/" class="contact-pill-item">
+          <img src="./images/linkedin.png" alt="LinkedIn icon" class="icon contact-icon" />
+          <span>LinkedIn</span>
+        </a>
+        <span class="contact-pill-divider"></span>
+        <a href="https://github.com/ocubillofroilan-dev" class="contact-pill-item">
+          <img src="./images/github.png" alt="GitHub icon" class="icon contact-icon" />
+          <span>GitHub</span>
+        </a>
       </div>
     </section>
     <footer>
