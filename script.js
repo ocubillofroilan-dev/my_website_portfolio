@@ -5,6 +5,30 @@ function toggleMenu() {
   icon.classList.toggle("open");
 }
 
+// Split the hero name into one <span class="letter"> per character
+// (keeping the space between words as a plain space, not a span) so
+// each letter can pop/color-shift on its own hover, independently
+// of the letters around it — see the #hero-name rules in styles.css.
+(function splitHeroNameIntoLetters() {
+  const heroName = document.getElementById("hero-name");
+  if (!heroName) return;
+
+  const words = heroName.textContent.split(" ");
+  heroName.innerHTML = "";
+
+  words.forEach((word, wordIndex) => {
+    word.split("").forEach((char) => {
+      const letterSpan = document.createElement("span");
+      letterSpan.className = "letter";
+      letterSpan.textContent = char;
+      heroName.appendChild(letterSpan);
+    });
+    if (wordIndex < words.length - 1) {
+      heroName.appendChild(document.createTextNode(" "));
+    }
+  });
+})();
+
 // Dark mode toggle — persists the choice in localStorage and keeps
 // both the desktop and mobile toggle buttons' icons in sync.
 const THEME_KEY = "portfolio-theme";
@@ -97,15 +121,19 @@ if (contactForm) {
   });
 }
 
-// Show More / Show Less toggle for certificates
+// Show More / Show Less toggle for certificates. Toggling the
+// certificate-hidden class itself (instead of setting an inline
+// display style) means the stylesheet always stays in control of
+// how a revealed card is displayed — no risk of an inline style
+// silently overriding the card's flex layout.
 const showMoreBtn = document.getElementById("show-more-btn");
+const hiddenCertCards = document.querySelectorAll(".certificate-hidden");
 if (showMoreBtn) {
   showMoreBtn.addEventListener("click", () => {
-    const hiddenCards = document.querySelectorAll(".certificate-hidden");
     const isExpanded = showMoreBtn.dataset.expanded === "true";
 
-    hiddenCards.forEach((card) => {
-      card.style.display = isExpanded ? "none" : "block";
+    hiddenCertCards.forEach((card) => {
+      card.classList.toggle("certificate-hidden", isExpanded);
     });
 
     showMoreBtn.textContent = isExpanded ? "Show More" : "Show Less";
@@ -115,13 +143,13 @@ if (showMoreBtn) {
 
 // Show More / Show Less toggle for projects (same pattern as certificates)
 const showMoreProjectsBtn = document.getElementById("show-more-projects-btn");
+const hiddenProjectCards = document.querySelectorAll(".project-hidden");
 if (showMoreProjectsBtn) {
   showMoreProjectsBtn.addEventListener("click", () => {
-    const hiddenProjectCards = document.querySelectorAll(".project-hidden");
     const isExpanded = showMoreProjectsBtn.dataset.expanded === "true";
 
     hiddenProjectCards.forEach((card) => {
-      card.style.display = isExpanded ? "none" : "block";
+      card.classList.toggle("project-hidden", isExpanded);
     });
 
     showMoreProjectsBtn.textContent = isExpanded ? "Show More" : "Show Less";

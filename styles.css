@@ -345,6 +345,20 @@ section {
   margin-bottom: 0.25rem;
 }
 
+/* Hero name split into individual letters (see script.js) so each
+   letter pops and shifts to the amethyst accent on its own hover,
+   without affecting the letters around it. */
+#hero-name .letter {
+  display: inline-block;
+  transform-origin: center bottom;
+  transition: transform 200ms ease, color 200ms ease;
+}
+
+#hero-name .letter:hover {
+  transform: scale(1.35) translateY(-0.08em);
+  color: var(--color-primary);
+}
+
 .section__text p {
   font-weight: 600;
 }
@@ -446,7 +460,8 @@ section {
 
 .about-containers {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, 1fr);
+  align-items: stretch;
   gap: 2rem;
   margin-bottom: 2rem;
   margin-top: 2rem;
@@ -468,7 +483,7 @@ section {
 /* Education and Experience side by side */
 .about-two-column {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 3rem;
   max-width: 1100px;
   margin: 2rem auto 0;
@@ -848,7 +863,7 @@ article p {
    design instead of two different ones. */
 #projects .about-containers,
 #certificates .about-containers {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .color-container {
@@ -866,19 +881,16 @@ article p {
   border-radius: 2rem;
 }
 
-/* Project cards can have titles of very different lengths ("CRM"
-   vs "Arduino-Based PET Bottle Filament Maker for 3D Printing"),
-   which used to push the "Description »»»" link to a different
-   height in every card. Certificates don't have this problem
-   because their titles are all roughly the same length, so their
-   grid always looked aligned by default. Making the card a flex
-   column and pinning the toggle button to the bottom (via the
-   auto margin below) keeps that link — and everything below it —
-   lined up across every card in a row, no matter how tall the
-   title above it grows. */
-.project-card {
+/* Force every project/certificate card to fill its grid row equally
+   and push the description toggle to the same spot regardless of
+   how many lines the title wraps to, so a row of cards always ends
+   on the same bottom edge. */
+#projects .details-container,
+#certificates .details-container {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 /* Instagram-style carousel arrows, overlaid on the image corners
@@ -940,17 +952,10 @@ article p {
   font-weight: 600;
   font-size: 0.85rem;
   cursor: pointer;
-  margin: 0.4rem auto 0 0;
-  padding: 0;
-  text-align: left;
-}
-
-/* Pushes the button (and the description below it) down to the
-   bottom of the flex column above, so it sits at the same height
-   in every project card regardless of the title's line count. */
-#projects .description-toggle-btn {
   margin-top: auto;
-  padding-top: 0.4rem;
+  padding: 0.4rem 0 0 0;
+  text-align: left;
+  align-self: flex-start;
 }
 
 .description-toggle-btn:hover {
@@ -982,6 +987,10 @@ article p {
   margin: 1rem;
   color: var(--text);
   font-size: 1.3rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .project-btn {
@@ -994,6 +1003,7 @@ article p {
 .project-card,
 .certificate-card {
   cursor: pointer;
+  align-self: stretch;
   transition: transform 300ms ease, box-shadow 300ms ease;
   transform-style: preserve-3d;
 }
@@ -1248,19 +1258,11 @@ footer p {
     margin-bottom: 6rem;
   }
   .about-containers {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, 1fr);
   }
   #projects .about-containers,
   #certificates .about-containers {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  /* Cards are narrower once we drop to 2 columns, so longer titles
-     (e.g. "Number Guessing Game") were wrapping to 3 lines while
-     shorter ones only wrapped to 2 — a smaller title font here
-     lets long titles fit in fewer lines so cards read more evenly. */
-  #projects .project-title,
-  #certificates .project-title {
-    font-size: 1.1rem;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
