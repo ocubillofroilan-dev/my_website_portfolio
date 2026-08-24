@@ -185,13 +185,14 @@ a:hover {
   position: absolute;
   top: 100%;
   right: 0;
+  margin-top: 0.6rem;
   background-color: var(--bg-alt);
-  border: 0.13rem solid var(--border);
+  border: 0.13rem solid transparent;
   border-radius: 1rem;
   width: fit-content;
   max-height: 0;
   overflow: hidden;
-  transition: all 0.3 ease-in-out;
+  transition: max-height 0.3s ease-in-out, border-color 0.3s ease-in-out;
   z-index: 100;
 }
 
@@ -211,6 +212,7 @@ a:hover {
 
 .menu-links.open {
   max-height: 300px;
+  border-color: var(--border);
 }
 
 .hamburger-icon.open span:first-child {
