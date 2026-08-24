@@ -80,10 +80,16 @@ nav {
   margin: 1.5rem auto 0;
   padding: 0.6rem 0.9rem 0.6rem 1.6rem;
   box-sizing: border-box;
-  border: 0.15rem solid var(--border);
+  border: none;
   border-radius: 3rem;
   background: var(--bg-alt);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  /* An inset ring instead of a real border — a real border combined
+     with this large a radius leaves a thin anti-aliasing seam at
+     certain zoom levels where background can leak past the outline.
+     A box-shadow ring is one solid painted shape, so there's no seam
+     to leak through at any zoom level. */
+  box-shadow: inset 0 0 0 0.15rem var(--border),
+    0 6px 18px rgba(0, 0, 0, 0.08);
   position: sticky;
   top: 1rem;
   z-index: 1000;
@@ -198,12 +204,17 @@ a:hover {
   right: 0;
   margin-top: 0.6rem;
   background-color: var(--bg-alt);
-  border: 0.13rem solid transparent;
+  border: none;
   border-radius: 1rem;
+  /* Same inset-ring technique as the nav pill — avoids a border +
+     border-radius rendering seam at odd zoom levels. Transparent
+     when closed, filled in when .open (see below), replacing the
+     old border-color toggle. */
+  box-shadow: inset 0 0 0 0.13rem transparent;
   width: fit-content;
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  transition: max-height 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   z-index: 100;
 }
 
@@ -223,7 +234,7 @@ a:hover {
 
 .menu-links.open {
   max-height: 300px;
-  border-color: var(--border);
+  box-shadow: inset 0 0 0 0.13rem var(--border);
 }
 
 .hamburger-icon.open span:first-child {
