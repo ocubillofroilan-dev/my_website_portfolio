@@ -459,9 +459,10 @@ section {
 }
 
 .about-containers {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   align-items: stretch;
+  justify-content: center;
   gap: 2rem;
   margin-bottom: 2rem;
   margin-top: 2rem;
@@ -858,12 +859,16 @@ article p {
   position: relative;
 }
 
-/* Certificates now reuses this same 3-column grid, image box, and
+/* Certificates now reuses this same 3-column layout, image box, and
    hover-tilt setup, so both sections share one consistent card
-   design instead of two different ones. */
-#projects .about-containers,
-#certificates .about-containers {
-  grid-template-columns: repeat(3, 1fr);
+   design instead of two different ones. Cards use flex-basis (not
+   CSS Grid) so a leftover row — e.g. only 1 card revealed by "Show
+   More" — centers itself instead of hugging the left edge with a
+   big empty gap next to it. */
+#projects .details-container,
+#certificates .details-container {
+  flex: 0 1 calc((100% - 4rem) / 3);
+  max-width: calc((100% - 4rem) / 3);
 }
 
 .color-container {
@@ -881,15 +886,14 @@ article p {
   border-radius: 2rem;
 }
 
-/* Force every project/certificate card to fill its grid row equally
-   and push the description toggle to the same spot regardless of
-   how many lines the title wraps to, so a row of cards always ends
-   on the same bottom edge. */
+/* Force every project/certificate card to fill its row's height
+   equally and push the description toggle to the same spot
+   regardless of how many lines the title wraps to, so a row of
+   cards always ends on the same bottom edge. */
 #projects .details-container,
 #certificates .details-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
   box-sizing: border-box;
 }
 
@@ -989,6 +993,7 @@ article p {
   font-size: 1.3rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -1071,6 +1076,19 @@ article p {
 
 .project-hidden,
 .certificate-hidden {
+  display: none;
+}
+
+/* Specificity fix: #projects .details-container / #certificates
+   .details-container (used for the flex card layout) is an ID+class
+   selector, which is MORE specific than the plain .project-hidden /
+   .certificate-hidden class above — so without this override, a
+   hidden card's "display: flex" would silently win over "display:
+   none" and the card would show up before Show More was ever
+   clicked. This matches that specificity so hidden truly means
+   hidden. */
+#projects .details-container.project-hidden,
+#certificates .details-container.certificate-hidden {
   display: none;
 }
 
@@ -1257,12 +1275,10 @@ footer p {
     min-height: 83vh;
     margin-bottom: 6rem;
   }
-  .about-containers {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  #projects .about-containers,
-  #certificates .about-containers {
-    grid-template-columns: repeat(2, 1fr);
+  #projects .details-container,
+  #certificates .details-container {
+    flex-basis: calc((100% - 2rem) / 2);
+    max-width: calc((100% - 2rem) / 2);
   }
 }
 
@@ -1318,12 +1334,10 @@ footer p {
   article {
     font-size: 1rem;
   }
-  .about-containers {
-    grid-template-columns: 1fr;
-  }
-  #projects .about-containers,
-  #certificates .about-containers {
-    grid-template-columns: 1fr;
+  #projects .details-container,
+  #certificates .details-container {
+    flex-basis: 100%;
+    max-width: 100%;
   }
   .contact-info-upper-container,
   .btn-container {
