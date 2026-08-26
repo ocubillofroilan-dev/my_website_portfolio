@@ -83,11 +83,6 @@ nav {
   border: none;
   border-radius: 3rem;
   background: var(--bg-alt);
-  /* An inset ring instead of a real border — a real border combined
-     with this large a radius leaves a thin anti-aliasing seam at
-     certain zoom levels where background can leak past the outline.
-     A box-shadow ring is one solid painted shape, so there's no seam
-     to leak through at any zoom level. */
   box-shadow: inset 0 0 0 0.15rem var(--border),
     0 6px 18px rgba(0, 0, 0, 0.08);
   position: sticky;
@@ -206,10 +201,6 @@ a:hover {
   background-color: var(--bg-alt);
   border: none;
   border-radius: 1rem;
-  /* Same inset-ring technique as the nav pill — avoids a border +
-     border-radius rendering seam at odd zoom levels. Transparent
-     when closed, filled in when .open (see below), replacing the
-     old border-color toggle. */
   box-shadow: inset 0 0 0 0.13rem transparent;
   width: fit-content;
   max-height: 0;
@@ -309,8 +300,6 @@ section {
   border-radius: 1.75rem;
 }
 
-/* Decorative blurred gradient shape behind the hero photo, instead
-   of the photo just floating on plain white */
 .hero-photo-frame {
   position: relative;
 }
@@ -356,9 +345,6 @@ section {
   margin-bottom: 0.25rem;
 }
 
-/* Hero name split into individual letters (see script.js) so each
-   letter pops and shifts to the amethyst accent on its own hover,
-   without affecting the letters around it. */
 #hero-name .letter {
   display: inline-block;
   transform-origin: center bottom;
@@ -576,7 +562,7 @@ section {
   margin-top: 0.6rem;
 }
 
-/* CONTACT PILL (simple single-row contact bar) */
+/* CONTACT PILL */
 
 .contact-pill {
   display: flex;
@@ -647,11 +633,8 @@ section {
   text-align: center;
 }
 
-/* FLIP CARDS (About section only) */
+/* FLIP CARDS */
 
-/* Outer wrapper: strips the padding/border/background that
-   .details-container normally has, since the front/back panels
-   below supply their own — otherwise you'd see a double border */
 #about .details-container.flip-card {
   padding: 0;
   background: none;
@@ -670,8 +653,6 @@ section {
   transform: rotateY(180deg);
 }
 
-/* Front sits in normal document flow, so it's what actually gives
-   the card its height (icon + "Education"/"Experience" only) */
 .flip-card-front {
   position: relative;
   width: 100%;
@@ -689,9 +670,6 @@ section {
   gap: 0.5rem;
 }
 
-/* Back is absolutely positioned to exactly overlay the front, and
-   pre-rotated 180deg so it only becomes readable once the whole
-   card has flipped */
 .flip-card-back {
   position: absolute;
   top: 0;
@@ -829,9 +807,6 @@ article p {
     color 250ms ease, border-color 250ms ease;
 }
 
-/* Pausing the whole track's scroll animation whenever any item in
-   it is hovered, so the row stops moving instead of sliding the
-   hovered item away mid-interaction */
 .marquee-track:has(.marquee-item:hover) {
   animation-play-state: paused;
 }
@@ -870,12 +845,6 @@ article p {
   position: relative;
 }
 
-/* Certificates now reuses this same 3-column layout, image box, and
-   hover-tilt setup, so both sections share one consistent card
-   design instead of two different ones. Cards use flex-basis (not
-   CSS Grid) so a leftover row — e.g. only 1 card revealed by "Show
-   More" — centers itself instead of hugging the left edge with a
-   big empty gap next to it. */
 #projects .details-container,
 #certificates .details-container {
   flex: 0 1 calc((100% - 4rem) / 3);
@@ -897,10 +866,6 @@ article p {
   border-radius: 2rem;
 }
 
-/* Force every project/certificate card to fill its row's height
-   equally and push the description toggle to the same spot
-   regardless of how many lines the title wraps to, so a row of
-   cards always ends on the same bottom edge. */
 #projects .details-container,
 #certificates .details-container {
   display: flex;
@@ -908,11 +873,6 @@ article p {
   box-sizing: border-box;
 }
 
-/* Instagram-style carousel arrows, overlaid on the image corners
-   (not pushed outside the card) so they can't be blocked or
-   clipped by neighboring elements. Plain dark icon by default; on
-   hover, the circular background turns light gray. Hidden entirely
-   for single-image projects (see script.js). */
 .project-image-wrap {
   position: relative;
   isolation: isolate;
@@ -1014,8 +974,6 @@ article p {
   border-color: var(--border);
 }
 
-/* Same "bend a little" hover tilt, plus click-to-popup, applied to
-   both Project cards and Certificate cards */
 .project-card,
 .certificate-card {
   cursor: pointer;
@@ -1090,14 +1048,6 @@ article p {
   display: none;
 }
 
-/* Specificity fix: #projects .details-container / #certificates
-   .details-container (used for the flex card layout) is an ID+class
-   selector, which is MORE specific than the plain .project-hidden /
-   .certificate-hidden class above — so without this override, a
-   hidden card's "display: flex" would silently win over "display:
-   none" and the card would show up before Show More was ever
-   clicked. This matches that specificity so hidden truly means
-   hidden. */
 #projects .details-container.project-hidden,
 #certificates .details-container.certificate-hidden {
   display: none;
@@ -1256,9 +1206,6 @@ article p {
   cursor: default;
 }
 
-/* Simple black glyph icons (email/LinkedIn/GitHub) need inverting in
-   dark mode so they stay visible against dark surfaces; the colorful
-   devicon/tech-stack logos are left alone. */
 body.dark-mode #socials-container .icon,
 body.dark-mode .contact-pill-item .icon {
   filter: invert(1) brightness(1.6);
@@ -1275,11 +1222,6 @@ footer p {
   text-align: center;
   color: var(--text-secondary);
 }
-
-/* ============================================
-   RESPONSIVE / MEDIA QUERIES
-   (merged in from mediaquiries.css)
-   ============================================ */
 
 @media screen and (max-width: 1400px) {
   #profile {

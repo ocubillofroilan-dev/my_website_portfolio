@@ -5,10 +5,6 @@ function toggleMenu() {
   icon.classList.toggle("open");
 }
 
-// Split the hero name into one <span class="letter"> per character
-// (keeping the space between words as a plain space, not a span) so
-// each letter can pop/color-shift on its own hover, independently
-// of the letters around it — see the #hero-name rules in styles.css.
 (function splitHeroNameIntoLetters() {
   const heroName = document.getElementById("hero-name");
   if (!heroName) return;
@@ -29,8 +25,6 @@ function toggleMenu() {
   });
 })();
 
-// Dark mode toggle — persists the choice in localStorage and keeps
-// both the desktop and mobile toggle buttons' icons in sync.
 const THEME_KEY = "portfolio-theme";
 const themeToggleBtns = document.querySelectorAll(".theme-toggle-btn");
 
@@ -51,13 +45,10 @@ function toggleTheme() {
   try {
     localStorage.setItem(THEME_KEY, nextTheme);
   } catch (err) {
-    // localStorage unavailable (e.g. private browsing) — theme just
-    // won't persist across visits.
+    
   }
 }
 
-// Restore saved preference on load, falling back to the visitor's
-// OS-level preference if they haven't chosen one on this site yet.
 (function initTheme() {
   let saved = null;
   try {
@@ -70,7 +61,6 @@ function toggleTheme() {
   applyTheme(saved || (prefersDark ? "dark" : "light"));
 })();
 
-// Resume viewer modal
 const resumeModal = document.getElementById("resume-modal");
 const resumeModalClose = document.getElementById("resume-modal-close");
 
@@ -87,9 +77,6 @@ resumeModal.addEventListener("click", (e) => {
   if (e.target === resumeModal) closeResumeModal();
 });
 
-// Contact form -> submits to Formspree via fetch, so the visitor
-// stays on the page and sees an inline confirmation instead of
-// being redirected away after sending.
 const contactForm = document.getElementById("contact-form");
 const contactStatus = document.getElementById("contact-form-status");
 
@@ -121,11 +108,6 @@ if (contactForm) {
   });
 }
 
-// Show More / Show Less toggle for certificates. Toggling the
-// certificate-hidden class itself (instead of setting an inline
-// display style) means the stylesheet always stays in control of
-// how a revealed card is displayed — no risk of an inline style
-// silently overriding the card's flex layout.
 const showMoreBtn = document.getElementById("show-more-btn");
 const hiddenCertCards = document.querySelectorAll(".certificate-hidden");
 if (showMoreBtn) {
@@ -141,7 +123,6 @@ if (showMoreBtn) {
   });
 }
 
-// Show More / Show Less toggle for projects (same pattern as certificates)
 const showMoreProjectsBtn = document.getElementById("show-more-projects-btn");
 const hiddenProjectCards = document.querySelectorAll(".project-hidden");
 if (showMoreProjectsBtn) {
@@ -157,8 +138,6 @@ if (showMoreProjectsBtn) {
   });
 }
 
-// Project description toggle (expand/collapse), stopPropagation so
-// clicking it doesn't also trigger the card's image modal
 document.querySelectorAll(".description-toggle-btn").forEach((btn) => {
   btn.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -168,10 +147,6 @@ document.querySelectorAll(".description-toggle-btn").forEach((btn) => {
   });
 });
 
-// Project image carousel (Instagram-style arrows). Reads the list
-// of image paths from each card's data-images attribute. If a card
-// only has one image, the arrows are hidden entirely — add more
-// paths to data-images in the HTML to enable cycling for that card.
 document.querySelectorAll(".project-card").forEach((card) => {
   let images = [];
   try {
@@ -208,8 +183,6 @@ document.querySelectorAll(".project-card").forEach((card) => {
     showImage(index + 1);
   });
 
-  // Touch swipe support (left/right finger swipe on mobile), in
-  // addition to the arrow buttons
   const swipeTarget = card.querySelector(".article-container");
   let touchStartX = 0;
 
@@ -231,16 +204,15 @@ document.querySelectorAll(".project-card").forEach((card) => {
       if (Math.abs(deltaX) < swipeThreshold) return;
 
       if (deltaX < 0) {
-        showImage(index + 1); // swiped left -> next image
+        showImage(index + 1); 
       } else {
-        showImage(index - 1); // swiped right -> previous image
+        showImage(index - 1); 
       }
     },
     { passive: true }
   );
 });
 
-// Certificate modal (lightbox)
 const certModal = document.getElementById("cert-modal");
 const certModalImg = document.getElementById("cert-modal-img");
 const certModalTitle = document.getElementById("cert-modal-title");
@@ -264,7 +236,6 @@ certModal.addEventListener("click", (e) => {
   if (e.target === certModal) closeCertModal();
 });
 
-// Project modal (lightbox) - same pattern as the certificate modal
 const projectModal = document.getElementById("project-modal");
 const projectModalImg = document.getElementById("project-modal-img");
 const projectModalTitle = document.getElementById("project-modal-title");
@@ -288,7 +259,6 @@ projectModal.addEventListener("click", (e) => {
   if (e.target === projectModal) closeProjectModal();
 });
 
-// Shared Escape-key handler closes whichever modal is open
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     closeCertModal();
